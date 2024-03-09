@@ -11,16 +11,16 @@ public static partial class MyLinq
 {
     public static IEnumerable<TSource> MyOrderBy<TSource, TKey>
         (this IEnumerable<TSource> collection,
-        Func<TSource, TKey> keySelector)
+        Func<TSource, TKey> keySelector) where TKey : IComparable<TKey>
             => new MyOrderedEnumerable<TSource, TKey>(collection, keySelector, descending: false);
 
     public static IEnumerable<TSource> MyOrderByDescending<TSource, TKey>
         (this IEnumerable<TSource> collection,
-        Func<TSource, TKey> keySelector)
+        Func<TSource, TKey> keySelector) where TKey : IComparable<TKey>
             => new MyOrderedEnumerable<TSource, TKey>(collection, keySelector, descending: true);
 }
 
-public class MyOrderedEnumerable<TSource, TKey> : IEnumerable<TSource>
+public class MyOrderedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey : IComparable<TKey>
 {
     private readonly IEnumerable<TSource> collection;
     private readonly Func<TSource, TKey> keySelector;

@@ -1,41 +1,63 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
-namespace MyLinq.Ordering;
+namespace MyLinq;
 
-public class MySortedEnumerable<TSource, TKey> : IEnumerable<TSource>
+public class MySortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey : IComparable<TKey>
 {
-    private List<TSource> sortedList;
+    private List<TSource> sortedCollection;
 
 
     public static MySortedEnumerable<TSource, TKey> Create(
-        IEnumerable<TSource> collection, 
-        Func<TSource, TKey> keySelector, 
+        IEnumerable<TSource> collection,
+        Func<TSource, TKey> keySelector,
         bool descending)
     {
         MySortedEnumerable<TSource, TKey> sortedEnumerable = new();
         foreach (TSource item in collection)
         {
-            TKey key = keySelector(item);
-            if (key != null)
-
+            sortedEnumerable.Insert(item, keySelector, descending);
         }
         return sortedEnumerable;
     }
 
     private MySortedEnumerable()
     {
-        sortedList = new List<TSource>();
+        sortedCollection = new List<TSource>();
     }
 
     public IEnumerator<TSource> GetEnumerator()
     {
-        throw new NotImplementedException();
+        foreach (TSource item in sortedCollection)
+            yield return item;
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    private void Insert(TSource item, Func<TSource, TKey> keySelector, bool descending)
+    {
+        TKey key = keySelector(item);
+
+        if (key != null)
+        {
+            if (sortedCollection.Count == 0)
+                sortedCollection.Add(item);
+
+            for (int i = 0; i < sortedCollection.Count; i++)
+            {
+                var keyToCompare = keySelector(sortedCollection[i]);
+
+                if (key.CompareTo(keyToCompare) > 0 && !descending)
+                {
+                    sortedCollection.Insert(i, item);
+                    break;
+                }
+
+                if (key.CompareTo(keyToCompare) <= 0 && descending)
+                {
+                    sortedCollection.Insert(i, item);
+                    break;
+                }
+            }
+        }
+    }
 }
