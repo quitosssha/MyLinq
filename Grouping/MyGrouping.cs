@@ -5,6 +5,7 @@ namespace MyLinq.Grouping;
 public interface IMyGrouping<TKey, TElement> : IEnumerable<TElement>
 {
     TKey Key { get; }
+    TElement[] Elements { get; }
 }
 
 public class MyGrouping<TKey, TElement> : IMyGrouping<TKey, TElement>
@@ -31,6 +32,7 @@ public class MyGrouping<TKey, TElement> : IMyGrouping<TKey, TElement>
     }
 
     TKey IMyGrouping<TKey, TElement>.Key => Key;
+    TElement[] IMyGrouping<TKey, TElement>.Elements => Elements;
 
     public IEnumerator<TElement> GetEnumerator()
     {
