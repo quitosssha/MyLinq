@@ -2,17 +2,17 @@
 
 namespace MyLinq;
 
-public class MySortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey : IComparable<TKey>
+public class SortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey : IComparable<TKey>
 {
     private List<TSource> sortedCollection;
 
 
-    public static MySortedEnumerable<TSource, TKey> Create(
+    public static SortedEnumerable<TSource, TKey> Create(
         IEnumerable<TSource> collection,
         Func<TSource, TKey> keySelector,
         bool descending)
     {
-        MySortedEnumerable<TSource, TKey> sortedEnumerable = new();
+        SortedEnumerable<TSource, TKey> sortedEnumerable = new();
         foreach (TSource item in collection)
         {
             sortedEnumerable.Insert(item, keySelector, descending);
@@ -20,7 +20,7 @@ public class MySortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey
         return sortedEnumerable;
     }
 
-    private MySortedEnumerable()
+    private SortedEnumerable()
     {
         sortedCollection = new List<TSource>();
     }
