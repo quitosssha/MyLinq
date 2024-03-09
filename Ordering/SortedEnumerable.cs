@@ -6,7 +6,6 @@ public class SortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey :
 {
     private List<TSource> sortedCollection;
 
-
     public static SortedEnumerable<TSource, TKey> Create(
         IEnumerable<TSource> collection,
         Func<TSource, TKey> keySelector,
@@ -40,22 +39,25 @@ public class SortedEnumerable<TSource, TKey> : IEnumerable<TSource> where TKey :
         if (key != null)
         {
             if (sortedCollection.Count == 0)
+            {
                 sortedCollection.Add(item);
+                return;
+            }
 
             for (int i = 0; i < sortedCollection.Count; i++)
             {
                 var keyToCompare = keySelector(sortedCollection[i]);
 
-                if (key.CompareTo(keyToCompare) > 0 && !descending)
+                if (key.CompareTo(keyToCompare) < 0 && !descending)
                 {
                     sortedCollection.Insert(i, item);
-                    break;
+                    return;
                 }
 
-                if (key.CompareTo(keyToCompare) <= 0 && descending)
+                if (key.CompareTo(keyToCompare) >= 0 && descending)
                 {
                     sortedCollection.Insert(i, item);
-                    break;
+                    return;
                 }
             }
         }

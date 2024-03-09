@@ -29,7 +29,7 @@ internal static class MyOrderByTests
     private static void Check<TSource, TKey>(this IEnumerable<TSource> collection, Func<TSource, TKey> keySelector)
         where TKey : IComparable<TKey>
     {
-        Assert.AreEqual(collection.MyOrderBy(keySelector), collection.MyOrderBy(keySelector));
-        Assert.AreEqual(collection.MyOrderByDescending(keySelector), collection.MyOrderByDescending(keySelector));
+        Assert.AreEqual(collection.OrderBy(keySelector), collection.MyOrderBy(keySelector));
+        Assert.AreEqual(collection.OrderByDescending(keySelector), collection.MyOrderByDescending(keySelector));
     }
 }
