@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLinq", "MyLinq.csproj", "{DF077C96-4B5F-45C1-8101-B71298BB83BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoadLogForAYear(FP2)", "..\LoadLogForAYear(FP2)\LoadLogForAYear(FP2).csproj", "{7E2AFFB2-8DC5-480E-94B2-1791AEADF97F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{DF077C96-4B5F-45C1-8101-B71298BB83BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF077C96-4B5F-45C1-8101-B71298BB83BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF077C96-4B5F-45C1-8101-B71298BB83BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E2AFFB2-8DC5-480E-94B2-1791AEADF97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E2AFFB2-8DC5-480E-94B2-1791AEADF97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E2AFFB2-8DC5-480E-94B2-1791AEADF97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E2AFFB2-8DC5-480E-94B2-1791AEADF97F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
